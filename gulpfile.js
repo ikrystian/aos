@@ -17,6 +17,7 @@ const remoteSrc = require('gulp-remote-src');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const zip = require('gulp-vinyl-zip');
+const sass = require('gulp-sass');
 
 /* -------------------------------------------------------------------------------------------------
 Theme Name
@@ -163,10 +164,9 @@ function copyFontsDev() {
 }
 
 function stylesDev() {
-	return src('./src/assets/styles/style.css')
-		.pipe(plumber({ errorHandler: onError }))
+	return src('./src/assets/styles/style.scss')
 		.pipe(sourcemaps.init())
-		.pipe(postcss(pluginsListDev))
+		.pipe(sass().on("error", sass.logError))
 		.pipe(sourcemaps.write('.'))
 		.pipe(dest('./build/wordpress/wp-content/themes/' + themeName))
 		.pipe(browserSync.stream({ match: '**/*.css' }));
@@ -230,9 +230,8 @@ function copyFontsProd() {
 }
 
 function stylesProd() {
-	return src('./src/assets/styles/style.css')
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(postcss(pluginsListProd))
+	return src('./src/assets/styles/style.scss')
+		.pipe(sass().on("error", sass.logError))
 		.pipe(dest('./dist/themes/' + themeName));
 }
 

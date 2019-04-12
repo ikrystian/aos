@@ -82,13 +82,13 @@ async function cleanup() {
 }
 
 async function downloadWordPress() {
-	await remoteSrc(['latest.zip'], {
+	await remoteSrc(['wordpress-4.9.10.zip'], {
 		base: 'https://wordpress.org/',
 	}).pipe(dest('./build/'));
 }
 
 async function unzipWordPress() {
-	return await zip.src('./build/latest.zip').pipe(dest('./build/'));
+	return await zip.src('./build/wordpress-4.9.10.zip').pipe(dest('./build/'));
 }
 
 async function copyConfig() {
@@ -128,7 +128,7 @@ function devServer() {
 		},
 	);
 
-	watch('./src/assets/styles/**/*.css', stylesDev);
+	watch('./src/assets/styles/**/*.scss', stylesDev);
 	watch('./src/assets/js/**', series(footerScriptsDev, Reload));
 	watch('./src/assets/img/**', series(copyImagesDev, Reload));
 	watch('./src/assets/fonts/**', series(copyFontsDev, Reload));

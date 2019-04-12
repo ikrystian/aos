@@ -8,5 +8,19 @@ Version: 1.0
 Tags: responsive, clean, minimal, modern, documentation
 */
 
-@import '../../../node_modules/normalize.css/normalize.css';
 @import 'globals';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: sticky;
+
+  nav {
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+  }
+}

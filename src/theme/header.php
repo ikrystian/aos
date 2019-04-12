@@ -24,7 +24,7 @@
         <img src="<?php echo get_template_directory_uri(); ?>/img/logo.jpg" alt="">
     </a>
     <nav>
-        <?php wp_nav_menu(); ?>
+        <?php wp_nav_menu('Main menu'); ?>
     </nav>
 </header>
 
